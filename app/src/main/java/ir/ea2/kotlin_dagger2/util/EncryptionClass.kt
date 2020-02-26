@@ -4,7 +4,10 @@ import android.util.Log
 import ir.ea2.kotlin_dagger2.di.EncryptionSecurity
 import javax.inject.Inject
 
-class EncryptionClass @Inject constructor(val security:EncryptionSecurity) {
+class EncryptionClass @Inject constructor() {
+    @Inject
+    lateinit var security:EncryptionSecurity
+
     fun encrypt(stringValue:String):String{
         Log.i("TAG_ENCRYPT:","Run EncryptionClass.encrypt()")
         Log.i("TAG_KEY:","Get SECURITY_KEY : ${security.SECURITY_KEY}")
