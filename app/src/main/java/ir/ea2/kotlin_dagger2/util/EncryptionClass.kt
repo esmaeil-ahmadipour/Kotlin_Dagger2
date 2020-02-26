@@ -25,3 +25,8 @@ class EncryptionClass @Inject constructor() {
         this.security=security
     }
 }
+/*Priority Injection By Dagger2:
+    1-Constructor Injection.
+    2-Field Injection.
+    3-Method Injection.
+*/
