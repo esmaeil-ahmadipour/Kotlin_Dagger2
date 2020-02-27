@@ -15,5 +15,9 @@ class MainActivity : AppCompatActivity() {
         val safe_pref=componnet.getSaePref()
         safe_pref.put("key","Hello World!")
         safe_pref.get("key","")
+
+        val safe_pref2=componnet.getSaePref2()
+        safe_pref2.put("key2","Hello World!")
+        safe_pref2.get("key2","")
     }
 }

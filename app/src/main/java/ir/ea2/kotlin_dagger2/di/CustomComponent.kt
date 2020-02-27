@@ -6,12 +6,17 @@ import dagger.Component
 import ir.ea2.kotlin_dagger2.di.module.ApplicationModule
 import ir.ea2.kotlin_dagger2.util.EncryptionClass
 import ir.ea2.kotlin_dagger2.util.SafePref
+import javax.inject.Named
 
 @Component(modules = [ApplicationModule::class])
 interface CustomComponent {
     fun getEncryptionObject(): EncryptionClass
 
+    @Named("SafePref1")
     fun getSaePref(): SafePref
+
+    @Named("SafePref2")
+    fun getSaePref2(): SafePref
 
     @Component.Builder
     interface Builder {

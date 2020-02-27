@@ -5,6 +5,7 @@ import android.util.Log
 import ir.ea2.kotlin_dagger2.di.EncryptionSecurity
 import ir.ea2.kotlin_dagger2.qualifier.QualifierAnnotation
 import javax.inject.Inject
+import javax.inject.Named
 
 class EncryptionClass @Inject constructor() {
 
@@ -19,7 +20,7 @@ class EncryptionClass @Inject constructor() {
     }
 
     @Inject
-    fun encryptionSecurityInject(@QualifierAnnotation security:EncryptionSecurity){
+    fun encryptionSecurityInject(@Named("EncryptionSecurity2") security:EncryptionSecurity){
         this.security=security
     }
 }
