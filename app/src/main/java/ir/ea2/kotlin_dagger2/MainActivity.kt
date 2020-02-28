@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import ir.ea2.kotlin_dagger2.di.DaggerApplication
 import ir.ea2.kotlin_dagger2.di.DaggerCustomComponent
 import ir.ea2.kotlin_dagger2.util.SafePref
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,8 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //Better Called On Top Of onCreate()
-        val componnet = DaggerCustomComponent.builder().setContext(baseContext).build()
-        componnet.mainActivityInject(this)
+        (applicationContext as DaggerApplication).daggerComponent.mainActivityInject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setViews()
