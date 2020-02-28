@@ -2,6 +2,7 @@ package ir.ea2.kotlin_dagger2
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import ir.ea2.kotlin_dagger2.di.DaggerApplication
@@ -17,6 +18,10 @@ class MainActivity : AppCompatActivity() {
     @field:Named("SafePref1")
     lateinit var safePref: SafePref
 
+    @Inject
+    @field:Named("SafePref1")
+    lateinit var secondSafePref: SafePref
+
     override fun onCreate(savedInstanceState: Bundle?) {
         //Better Called On Top Of onCreate()
         (applicationContext as DaggerApplication).daggerComponent.mainActivityInject(this)
@@ -25,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         setViews()
         safePref.put("key", "Hello World!")
         safePref.get("key", "")
+        Log.i("TAG_OBJECTS","First SafePref: $safePref AND Second SafePref: $secondSafePref")
 /*
         val safe_pref=componnet.getSaePref()
         safe_pref.put("key","Hello World!")

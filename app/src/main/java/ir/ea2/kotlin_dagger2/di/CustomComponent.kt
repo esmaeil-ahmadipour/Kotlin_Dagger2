@@ -9,7 +9,9 @@ import ir.ea2.kotlin_dagger2.di.module.ApplicationModule
 import ir.ea2.kotlin_dagger2.util.EncryptionClass
 import ir.ea2.kotlin_dagger2.util.SafePref
 import javax.inject.Named
+import javax.inject.Singleton
 
+@Singleton
 @Component(modules = [ApplicationModule::class])
 interface CustomComponent {
     fun getEncryptionObject(): EncryptionClass

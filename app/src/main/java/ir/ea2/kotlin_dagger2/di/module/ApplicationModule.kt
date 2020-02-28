@@ -8,6 +8,7 @@ import ir.ea2.kotlin_dagger2.qualifier.QualifierAnnotation
 import ir.ea2.kotlin_dagger2.util.EncryptionClass
 import ir.ea2.kotlin_dagger2.util.SafePref
 import javax.inject.Named
+import javax.inject.Singleton
 
 @Module
 class ApplicationModule {
@@ -47,6 +48,7 @@ class ApplicationModule {
         return  encryptionClass
     }
 
+    @Singleton
     @Named("SafePref1")
     @Provides
     fun getSafePref1(context: Context ,@Named("EncryptionClass1") encryptionClass: EncryptionClass):SafePref{
