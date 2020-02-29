@@ -14,12 +14,8 @@ interface CustomComponent {
 
     fun getActivityComponent():ActivityComponent.Builder
 
-    @Component.Builder
-    interface Builder {
-
-        @BindsInstance
-        fun setContext(context: Context):Builder
-
-        fun build(): CustomComponent
+    @Component.Factory
+    interface Factory {
+        fun create(@BindsInstance context: Context): CustomComponent
     }
 }

@@ -7,6 +7,6 @@ class DaggerApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        daggerComponent=DaggerCustomComponent.builder().setContext(baseContext).build()
+        daggerComponent=DaggerCustomComponent.factory().create(this)
     }
 }
