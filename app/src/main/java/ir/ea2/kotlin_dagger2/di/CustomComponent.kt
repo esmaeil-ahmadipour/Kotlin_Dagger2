@@ -1,29 +1,20 @@
 package ir.ea2.kotlin_dagger2.di
-
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
-import ir.ea2.kotlin_dagger2.MainActivity
-import ir.ea2.kotlin_dagger2.SecondActivity
-import ir.ea2.kotlin_dagger2.di.module.ApplicationModule
+import ir.ea2.kotlin_dagger2.di.module.EncryptionModule
+import ir.ea2.kotlin_dagger2.di.module.SecurityModule
 import ir.ea2.kotlin_dagger2.util.EncryptionClass
-import ir.ea2.kotlin_dagger2.util.SafePref
 import javax.inject.Named
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [ApplicationModule::class])
+@Component(modules = [EncryptionModule::class,SecurityModule::class])
 interface CustomComponent {
-    fun getEncryptionObject(): EncryptionClass
 
-    @Named("SafePref1")
-    fun getSaePref(): SafePref
-
-    @Named("SafePref2")
-    fun getSaePref2(): SafePref
-
-    fun mainActivityInject(activity: MainActivity)
-    fun secondActivityInject(activity: SecondActivity)
+    @Named("EncryptionClass1")
+    fun getEncryptionClass():EncryptionClass
+    fun getContext():Context
 
     @Component.Builder
     interface Builder {

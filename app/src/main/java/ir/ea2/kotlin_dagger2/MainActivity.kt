@@ -5,8 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import ir.ea2.kotlin_dagger2.di.DaggerActivityComponent
 import ir.ea2.kotlin_dagger2.di.DaggerApplication
 import ir.ea2.kotlin_dagger2.di.DaggerCustomComponent
+import ir.ea2.kotlin_dagger2.di.EncryptionSecurity
+import ir.ea2.kotlin_dagger2.util.EncryptionClass
 import ir.ea2.kotlin_dagger2.util.SafePref
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -22,15 +25,21 @@ class MainActivity : AppCompatActivity() {
     @field:Named("SafePref1")
     lateinit var secondSafePref: SafePref
 
+    @Inject
+    @field:Named("EncryptionClass1")
+    lateinit var encryptionClass: EncryptionClass
+
     override fun onCreate(savedInstanceState: Bundle?) {
         //Better Called On Top Of onCreate()
-        (applicationContext as DaggerApplication).daggerComponent.mainActivityInject(this)
+//        (applicationContext as DaggerApplication).daggerComponent.mainActivityInject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        DaggerActivityComponent.builder().customComponent((applicationContext as DaggerApplication).daggerComponent).build().mainActivityInject(this)
+
         setViews()
         safePref.put("key", "Hello World!")
         safePref.get("key", "")
-        Log.i("TAG_OBJECTS","First SafePref: $safePref AND Second SafePref: $secondSafePref")
+        Log.i("TAG_OBJECTS","First SafePref: $safePref AND Second SafePref: $secondSafePref AND Encryption: $encryptionClass")
 /*
         val safe_pref=componnet.getSaePref()
         safe_pref.put("key","Hello World!")

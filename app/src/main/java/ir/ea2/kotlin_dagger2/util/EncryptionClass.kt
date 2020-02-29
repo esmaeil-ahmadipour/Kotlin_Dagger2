@@ -3,7 +3,6 @@ package ir.ea2.kotlin_dagger2.util
 import android.util.Base64
 import android.util.Log
 import ir.ea2.kotlin_dagger2.di.EncryptionSecurity
-import ir.ea2.kotlin_dagger2.qualifier.QualifierAnnotation
 import javax.inject.Inject
 import javax.inject.Named
 
