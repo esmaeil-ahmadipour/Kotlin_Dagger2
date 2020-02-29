@@ -3,7 +3,6 @@ package ir.ea2.kotlin_dagger2
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import ir.ea2.kotlin_dagger2.di.DaggerActivityComponent
 import ir.ea2.kotlin_dagger2.di.DaggerApplication
 import ir.ea2.kotlin_dagger2.util.EncryptionClass
 import ir.ea2.kotlin_dagger2.util.SafePref
@@ -27,7 +26,10 @@ class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
-        DaggerActivityComponent.builder().getCustomComponenet((applicationContext as DaggerApplication).daggerComponent).builder().secondActivityInject(this)
+
+        val activityComponent=(applicationContext as DaggerApplication).daggerComponent.getActivityComponent()
+        activityComponent.secondActivityInject(this)
+
         Log.i("TAG_OBJECTS","AutoSafePref1: $autoSafePref1 AND AutoSafePref2: $autoSafePref2 AND Encryption: $encryptionClass")
     }
 }

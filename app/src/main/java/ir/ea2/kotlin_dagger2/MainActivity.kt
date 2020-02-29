@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import ir.ea2.kotlin_dagger2.di.DaggerActivityComponent
 import ir.ea2.kotlin_dagger2.di.DaggerApplication
-import ir.ea2.kotlin_dagger2.di.DaggerCustomComponent
-import ir.ea2.kotlin_dagger2.di.EncryptionSecurity
 import ir.ea2.kotlin_dagger2.util.EncryptionClass
 import ir.ea2.kotlin_dagger2.util.SafePref
 import kotlinx.android.synthetic.main.activity_main.*
@@ -32,7 +29,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        DaggerActivityComponent.builder().getCustomComponenet((applicationContext as DaggerApplication).daggerComponent).builder().mainActivityInject(this)
+
+        val activityComponent=(applicationContext as DaggerApplication).daggerComponent.getActivityComponent()
+        activityComponent.mainActivityInject(this)
+
         setViews()
         safePref.put("key", "Hello World!")
         safePref.get("key", "")
