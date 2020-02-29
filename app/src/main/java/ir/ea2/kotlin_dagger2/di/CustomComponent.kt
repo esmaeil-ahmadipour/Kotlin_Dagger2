@@ -25,6 +25,3 @@ interface CustomComponent {
         fun build(): CustomComponent
     }
 }
-/*With This Annotation :
-  We set access to this component for module classes that need them.
- */

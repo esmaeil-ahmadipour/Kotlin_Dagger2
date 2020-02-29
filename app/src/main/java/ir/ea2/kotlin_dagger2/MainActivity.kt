@@ -30,25 +30,13 @@ class MainActivity : AppCompatActivity() {
     lateinit var encryptionClass: EncryptionClass
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //Better Called On Top Of onCreate()
-//        (applicationContext as DaggerApplication).daggerComponent.mainActivityInject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        DaggerActivityComponent.builder().customComponent((applicationContext as DaggerApplication).daggerComponent).build().mainActivityInject(this)
-
+        DaggerActivityComponent.builder().getCustomComponenet((applicationContext as DaggerApplication).daggerComponent).builder().mainActivityInject(this)
         setViews()
         safePref.put("key", "Hello World!")
         safePref.get("key", "")
         Log.i("TAG_OBJECTS","First SafePref: $safePref AND Second SafePref: $secondSafePref AND Encryption: $encryptionClass")
-/*
-        val safe_pref=componnet.getSaePref()
-        safe_pref.put("key","Hello World!")
-        safe_pref.get("key","")
-
-        val safe_pref2=componnet.getSaePref2()
-        safe_pref2.put("key2","Hello World!")
-        safe_pref2.get("key2","")
-*/
     }
 
     private fun setViews() {

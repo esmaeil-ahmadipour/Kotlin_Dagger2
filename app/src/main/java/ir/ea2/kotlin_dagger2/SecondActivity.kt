@@ -25,12 +25,9 @@ class SecondActivity : AppCompatActivity() {
     lateinit var encryptionClass: EncryptionClass
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        (applicationContext as DaggerApplication).daggerComponent.secondActivityInject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
-        DaggerActivityComponent.builder().customComponent((applicationContext as DaggerApplication).daggerComponent).build().secondActivityInject(this)
-
+        DaggerActivityComponent.builder().getCustomComponenet((applicationContext as DaggerApplication).daggerComponent).builder().secondActivityInject(this)
         Log.i("TAG_OBJECTS","AutoSafePref1: $autoSafePref1 AND AutoSafePref2: $autoSafePref2 AND Encryption: $encryptionClass")
-
     }
 }

@@ -11,4 +11,10 @@ import ir.ea2.kotlin_dagger2.di.scope.ActivityScope
 interface ActivityComponent {
     fun mainActivityInject(activity: MainActivity)
     fun secondActivityInject(activity: SecondActivity)
+
+    @Component.Builder
+    interface Builder{
+        fun getCustomComponenet(customComponent: CustomComponent):Builder
+        fun builder():ActivityComponent
+    }
 }
