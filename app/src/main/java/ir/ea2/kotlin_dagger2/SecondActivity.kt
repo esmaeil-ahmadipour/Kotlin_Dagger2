@@ -28,7 +28,7 @@ class SecondActivity : AppCompatActivity() {
         setContentView(R.layout.activity_second)
 
         val activityComponent=(applicationContext as DaggerApplication).daggerComponent.getActivityComponent()
-        activityComponent.secondActivityInject(this)
+        activityComponent.build().secondActivityInject(this)
 
         Log.i("TAG_OBJECTS","AutoSafePref1: $autoSafePref1 AND AutoSafePref2: $autoSafePref2 AND Encryption: $encryptionClass")
     }

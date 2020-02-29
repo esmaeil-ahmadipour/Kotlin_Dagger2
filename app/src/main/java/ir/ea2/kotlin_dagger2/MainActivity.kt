@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val activityComponent=(applicationContext as DaggerApplication).daggerComponent.getActivityComponent()
-        activityComponent.mainActivityInject(this)
+        activityComponent.build().mainActivityInject(this)
 
         setViews()
         safePref.put("key", "Hello World!")

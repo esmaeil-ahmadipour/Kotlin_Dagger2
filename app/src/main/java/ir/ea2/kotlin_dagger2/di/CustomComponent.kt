@@ -12,7 +12,7 @@ import javax.inject.Singleton
 @Component(modules = [EncryptionModule::class,SecurityModule::class])
 interface CustomComponent {
 
-    fun getActivityComponent():ActivityComponent
+    fun getActivityComponent():ActivityComponent.Builder
 
     @Component.Builder
     interface Builder {
