@@ -5,7 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import ir.ea2.kotlin_dagger2.di.DaggerApplication
+import dagger.android.AndroidInjection
+import dagger.android.support.DaggerAppCompatActivity
 import ir.ea2.kotlin_dagger2.di.EncryptionSecurity
 import ir.ea2.kotlin_dagger2.util.EncryptionClass
 import ir.ea2.kotlin_dagger2.util.SafePref
@@ -13,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 import javax.inject.Named
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
 
     @Inject
     @field:Named("SafePref1")
@@ -33,9 +34,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val activityComponent=(applicationContext as DaggerApplication).daggerComponent.getActivityComponent()
-        activityComponent.build().mainActivityInject(this)
 
         setViews()
         safePref.put("key", "Hello World!")
