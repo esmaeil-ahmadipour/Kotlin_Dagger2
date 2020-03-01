@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var encryptionClass: EncryptionClass
 
     @Inject
-    lateinit var eSecurities: Set<EncryptionSecurity>
+    lateinit var eSecurities: Map<String,EncryptionSecurity>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         Log.i("TAG_OBJECTS","First SafePref: $safePref AND Second SafePref: $secondSafePref AND Encryption: $encryptionClass")
 
         for(i in eSecurities){
-            Log.i("TAG_SET_MODULES",i.SECURITY_KEY)
+            Log.i("TAG_MAP_MODULES", "KEY : ${i.key} & VALUE: ${i.value.SECURITY_KEY}" )
         }
     }
 
