@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import ir.ea2.kotlin_dagger2.di.DaggerApplication
+import ir.ea2.kotlin_dagger2.di.EncryptionSecurity
 import ir.ea2.kotlin_dagger2.util.EncryptionClass
 import ir.ea2.kotlin_dagger2.util.SafePref
 import kotlinx.android.synthetic.main.activity_main.*
@@ -26,6 +27,9 @@ class MainActivity : AppCompatActivity() {
     @field:Named("EncryptionClass1")
     lateinit var encryptionClass: EncryptionClass
 
+    @Inject
+    lateinit var eSecurities: Set<EncryptionSecurity>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,6 +41,10 @@ class MainActivity : AppCompatActivity() {
         safePref.put("key", "Hello World!")
         safePref.get("key", "")
         Log.i("TAG_OBJECTS","First SafePref: $safePref AND Second SafePref: $secondSafePref AND Encryption: $encryptionClass")
+
+        for(i in eSecurities){
+            Log.i("TAG_SET_MODULES",i.SECURITY_KEY)
+        }
     }
 
     private fun setViews() {

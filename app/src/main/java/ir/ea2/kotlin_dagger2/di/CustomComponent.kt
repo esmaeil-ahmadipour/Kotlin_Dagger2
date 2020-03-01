@@ -3,13 +3,15 @@ import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
 import ir.ea2.kotlin_dagger2.di.module.EncryptionModule
+import ir.ea2.kotlin_dagger2.di.module.FirstTempModule
+import ir.ea2.kotlin_dagger2.di.module.SecondTempModule
 import ir.ea2.kotlin_dagger2.di.module.SecurityModule
 import ir.ea2.kotlin_dagger2.util.EncryptionClass
 import javax.inject.Named
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [EncryptionModule::class,SecurityModule::class])
+@Component(modules = [EncryptionModule::class,SecurityModule::class,FirstTempModule::class,SecondTempModule::class])
 interface CustomComponent {
 
     fun getActivityComponent():ActivityComponent.Builder
