@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import dagger.android.AndroidInjection
 import dagger.android.support.DaggerAppCompatActivity
+import ir.ea2.kotlin_dagger2.di.ViewModelInjector
 import ir.ea2.kotlin_dagger2.util.EncryptionClass
 import ir.ea2.kotlin_dagger2.util.SafePref
 import ir.ea2.kotlin_dagger2.view_models.MainActivityViewModel
@@ -28,6 +28,9 @@ class SecondActivity : DaggerAppCompatActivity() {
     @field:Named("EncryptionClass1")
     lateinit var encryptionClass: EncryptionClass
 
+    @Inject
+    lateinit var factory: ViewModelInjector
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
@@ -36,7 +39,7 @@ class SecondActivity : DaggerAppCompatActivity() {
     }
 
     private fun setViews() {
-        val vm = ViewModelProvider(this).get(SecondActivityViewModel::class.java)
+        val vm = ViewModelProvider(this,factory).get(SecondActivityViewModel::class.java)
         vm.testLog()
     }
 }

@@ -11,7 +11,7 @@ import javax.inject.Named
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AndroidInjectionModule::class,EncryptionModule::class,SecurityModule::class,FirstTempModule::class,SecondTempModule::class,ActivityModule::class])
+@Component(modules = [ViewModelModule::class,AndroidInjectionModule::class,EncryptionModule::class,SecurityModule::class,FirstTempModule::class,SecondTempModule::class,ActivityModule::class])
 interface CustomComponent : AndroidInjector<DaggerApp>{
 
     @Component.Factory

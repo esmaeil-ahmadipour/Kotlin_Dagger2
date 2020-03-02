@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import dagger.android.AndroidInjection
 import dagger.android.support.DaggerAppCompatActivity
 import ir.ea2.kotlin_dagger2.di.EncryptionSecurity
@@ -35,6 +34,9 @@ class MainActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var eSecurities: Map<String,EncryptionSecurity>
 
+    @Inject
+    lateinit var factory: ViewModelInjector
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -55,9 +57,8 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     private fun setViews() {
-        val vmInjector = ViewModelInjector(MainActivityViewModel(safePref))
 
-        val vm = ViewModelProvider(this,vmInjector)[MainActivityViewModel::class.java]
+        val vm = ViewModelProvider(this,factory)[MainActivityViewModel::class.java]
         vm.testLog()
 
         button.setOnClickListener(View.OnClickListener {
